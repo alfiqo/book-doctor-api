@@ -4,5 +4,4 @@ class Hospital < ApplicationRecord
 
   # validation
   validates_presence_of :name, :address
-  validates_associated :doctors
 end
