@@ -45,7 +45,7 @@ RSpec.describe "Hospitals API", type: :request do
       end
 
       it "returns a not found message" do
-        expect(response.body).to match(/Couldn't find Hospital/)
+        expect(response.body).to match(/data not found/)
       end
     end
   end

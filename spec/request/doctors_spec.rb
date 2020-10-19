@@ -30,7 +30,7 @@ RSpec.describe 'Doctors API', :type => :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find Hospital/)
+        expect(response.body).to match(/data not found/)
       end
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe 'Doctors API', :type => :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find Doctor/)
+        expect(response.body).to match(/data not found/)
       end
     end
   end
@@ -114,13 +114,13 @@ RSpec.describe 'Doctors API', :type => :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find Doctor/)
+        expect(response.body).to match(/data not found/)
       end
     end
   end
 
-  # Test suite for DELETE /hospitals/:id
-  describe 'DELETE /hospitals/:id' do
+  # Test suite for DELETE /hospitals/:id/doctors/:id
+  describe 'DELETE /hospitals/:id/doctors/:id' do
     before { delete "/hospitals/#{hospital_id}/doctors/#{id}", params: {}, headers: headers }
 
     it 'returns status code 204' do
