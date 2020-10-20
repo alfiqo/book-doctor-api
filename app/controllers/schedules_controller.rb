@@ -12,7 +12,7 @@ class SchedulesController < ApplicationController
 
   def create
     @doctor.schedules.create!(schedule_params)
-    json_response(@doctor, :created)
+    json_response(@doctor.schedules, :created)
   end
 
   def update
