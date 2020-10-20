@@ -5,7 +5,7 @@ RSpec.describe "Appointments API", :type => :request do
   let!(:hospital) { create(:hospital) }
   let!(:doctor) { create(:doctor) }
   let!(:schedule) { create(:schedule) }
-  let!(:appointments) { create_list(:appointment, 20, schedule_id: schedule.id, user_id: user_id) }
+  let!(:appointments) { create_list(:appointment, 10, schedule_id: schedule.id, user_id: user_id) }
   let(:hospital_id) { hospital.id }
   let(:doctor_id) { doctor.id }
   let(:id) { appointments.first.id }
@@ -22,7 +22,7 @@ RSpec.describe "Appointments API", :type => :request do
       end
 
       it "returns all schedule appointments" do
-        expect(json.size).to eq(20)
+        expect(json.size).to eq(10)
       end
     end
 
@@ -68,13 +68,14 @@ RSpec.describe "Appointments API", :type => :request do
   describe "POST /hospitals/:hospital_id/doctors/:doctor_id/schedules/:schedule_id/appointments" do
     let(:valid_attributes) { { queue: "A100", user_id: user_id, schedule_id: schedule_id }.to_json }
 
-    context "when request attributes are valid" do
+    context "when request attributes are valid but the records greater than 10" do
       before do
         post "/hospitals/#{hospital_id}/doctors/#{doctor_id}/schedules/#{schedule_id}/appointments", params: valid_attributes, headers: headers
       end
 
-      it "returns status code 201" do
-        expect(response).to have_http_status(201)
+      it "returns status code 422" do
+        expect(response).to have_http_status(422)
+        
       end
     end
 
