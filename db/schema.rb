@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20201020025513) do
   create_table "appointments", force: :cascade do |t|
     t.string   "queue"
     t.integer  "user_id"
-    t.integer  "doctor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.integer  "schedule_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["schedule_id"], name: "index_appointments_on_schedule_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 

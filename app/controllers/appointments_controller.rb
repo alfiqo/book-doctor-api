@@ -1,41 +1,41 @@
 class AppointmentsController < ApplicationController
-  before_action :set_doctor
-  before_action :set_doctor_appointment, only: [:show, :update, :destroy]
+  before_action :set_schedule
+  before_action :set_schedule_appointment, only: [:show, :update, :destroy]
 
   def index
-    json_response(@doctor.appointments)
+    json_response(@schedule.appointments)
   end
 
   def show
-    json_response(@doctor)
+    json_response(@schedule)
   end
 
   def create
-    @doctor.appointments.create!(schedule_params)
-    json_response(@doctor.appointments, :created)
+    @schedule.appointments.create!(schedule_params)
+    json_response(@schedule.appointments, :created)
   end
 
   def update
-    @doctor.update(schedule_params)
+    @schedule.update(schedule_params)
     head :no_content
   end
 
   def destroy
-    @doctor.destroy
+    @schedule.destroy
     head :no_content
   end
 
   private
 
   def schedule_params
-    params.permit(:queue, :user_id, :doctor_id)
+    params.permit(:queue, :user_id, :schedule_id)
   end
 
-  def set_doctor
-    @doctor = Doctor.find(params[:doctor_id])
+  def set_schedule
+    @schedule = Schedule.find(params[:schedule_id])
   end
 
-  def set_doctor_appointment
-    @doctor = @doctor.appointments.find_by!(id: params[:id]) if @doctor
+  def set_schedule_appointment
+    @schedule = @schedule.appointments.find_by!(id: params[:id]) if @schedule
   end
 end

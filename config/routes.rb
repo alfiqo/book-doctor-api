@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :hospitals do
     resources :doctors do
-      resources :schedules
-      resources :appointments
+      resources :schedules do
+        resources :appointments
+      end
     end
   end
   post "auth/login", to: "authentication#authenticate"
