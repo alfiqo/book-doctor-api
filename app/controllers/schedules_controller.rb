@@ -7,7 +7,7 @@ class SchedulesController < ApplicationController
   end
 
   def show
-    json_response(@doctor)
+    json_response(@schedule)
   end
 
   def create
@@ -16,12 +16,12 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    @doctor.update(schedule_params)
+    @schedule.update(schedule_params)
     head :no_content
   end
 
   def destroy
-    @doctor.destroy
+    @schedule.destroy
     head :no_content
   end
 
@@ -36,6 +36,6 @@ class SchedulesController < ApplicationController
   end
 
   def set_doctor_schedule
-    @doctor = @doctor.schedules.find_by!(id: params[:id]) if @doctor
+    @schedule = @doctor.schedules.find_by!(id: params[:id]) if @doctor
   end
 end
