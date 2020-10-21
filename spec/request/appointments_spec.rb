@@ -73,8 +73,8 @@ RSpec.describe "Appointments API", :type => :request do
         post "/hospitals/#{hospital_id}/doctors/#{doctor_id}/schedules/#{schedule_id}/appointments", params: valid_attributes, headers: headers
       end
 
-      it "returns status code 422" do
-        expect(response).to have_http_status(422)
+      it "returns status code 201" do
+        expect(response).to have_http_status(201)
         
       end
     end
